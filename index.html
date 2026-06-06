@@ -8,8 +8,30 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <div id="sidebar">
+        <button id="add-btn">Add +</button>
+        <form id="book-form" class="off">
+            <div>
+                <label for="book-title">Title:</label>
+                <input type="text" id="book-title">
+            </div>
+            <div>
+                <label for="book-author">Author:</label>
+                <input type="text" id="book-author">
+            </div>
+            <div>
+                <label for="pages">Number of pages:</label>
+                <input type="number" id="pages">
+            </div>
+            <div>
+                <label for="status">Have you read yet? </label>
+                <input type="checkbox" id="status">
+            </div>
+
+            <button type="submit">Add Book</button>
+        </form>
+    </div>
     <div id="book-grid">
-        
     </div>
 </body>
 </html>

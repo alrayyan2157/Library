@@ -1,6 +1,8 @@
 let bookLibrary = [];
 
 const bookGrid = document.getElementById("book-grid");
+const bookForm = document.getElementById("book-form");
+const addBtn = document.getElementById("add-btn");
 
 function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
@@ -32,3 +34,21 @@ function updateBookCards(){
         bookGrid.appendChild(card);
     });
 }
+
+addBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    bookForm.classList.remove("off");
+})
+
+bookForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const title = document.getElementById("book-title").value;
+    const author = document.getElementById("book-author").value;
+    const pages = document.getElementById("pages").value;
+    const read = document.getElementById("status").checked;
+
+    addBookToLibrary(title, author, pages, read);
+
+    bookForm.classList.add("off");
+})
