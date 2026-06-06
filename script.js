@@ -29,8 +29,8 @@ function updateBookCards(){
             <h3>${book.title}</h3>
             <p>By ${book.author}</p>
             <div class="actions">
-                <button class="status-btn ${book.read? "read" : "not-read"}">${book.read? "Read" : "Not Yet"}</button>
-                <button id="remove" onclick="removeBook(${book.id})">Remove</buton>
+                <button class="status-btn ${book.read? "read" : "not-read"}" onclick="changeStatus('${book.id}')">${book.read? "Read" : "Not Yet"}</button>
+                <button class="remove" onclick="removeBook('${book.id}')">Remove</button>
             </div>
         `;
 
@@ -57,6 +57,14 @@ bookForm.addEventListener('submit', (event) => {
 
 function removeBook(bookId){
     bookLibrary = bookLibrary.filter(book => book.id !== bookId);
+
+    updateBookCards();
+}
+
+function changeStatus(bookId) {
+    const book = bookLibrary.find(item => item.id === bookId);
+    
+    book.read = !book.read;
 
     updateBookCards();
 }
