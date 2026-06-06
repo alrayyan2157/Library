@@ -53,6 +53,7 @@ bookForm.addEventListener('submit', (event) => {
     addBookToLibrary(title, author, pages, read);
 
     bookForm.classList.add("off");
+    bookForm.reset();
 });
 
 function removeBook(bookId){
