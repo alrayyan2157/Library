@@ -15,7 +15,7 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     bookLibrary.push(book);
-    updateBookCards(book);
+    updateBookCards();
 }
 function updateBookCards(){
     bookGrid.innerHTML = "";
@@ -28,7 +28,10 @@ function updateBookCards(){
         card.innerHTML = `
             <h3>${book.title}</h3>
             <p>By ${book.author}</p>
-            <button class="status-btn ${book.read? "read" : "not-read"}">${book.read? "Read" : "Not Yet"}</button>
+            <div class="actions">
+                <button class="status-btn ${book.read? "read" : "not-read"}">${book.read? "Read" : "Not Yet"}</button>
+                <button id="remove" onclick="removeBook(${book.id})">Remove</buton>
+            </div>
         `;
 
         bookGrid.appendChild(card);
@@ -36,9 +39,8 @@ function updateBookCards(){
 }
 
 addBtn.addEventListener('click', (e) => {
-    e.preventDefault();
     bookForm.classList.remove("off");
-})
+});
 
 bookForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -51,4 +53,10 @@ bookForm.addEventListener('submit', (event) => {
     addBookToLibrary(title, author, pages, read);
 
     bookForm.classList.add("off");
-})
+});
+
+function removeBook(bookId){
+    bookLibrary = bookLibrary.filter(book => book.id !== bookId);
+
+    updateBookCards();
+}
